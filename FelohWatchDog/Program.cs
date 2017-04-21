@@ -17,7 +17,7 @@ namespace FelohWatchDog
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new FelohWatchDog()
             };
             ServiceBase.Run(ServicesToRun);
         }

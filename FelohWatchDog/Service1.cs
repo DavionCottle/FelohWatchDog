@@ -10,19 +10,32 @@ using System.Threading.Tasks;
 
 namespace FelohWatchDog
 {
-    public partial class Service1 : ServiceBase
+    public partial class FelohWatchDog : ServiceBase
     {
-        public Service1()
+        public FelohWatchDog()
         {
             InitializeComponent();
+            
+            if (!System.Diagnostics.EventLog.SourceExists("FelohWatchDogService"))
+            {
+                System.Diagnostics.EventLog.CreateEventSource(
+                    "FelohWatchDogService", "FelohWatchDogOutputLog");
+            }
+            eventLog1.Source = "FelohWatchDogService";
+            eventLog1.Log = "FelohWatchDogOutputLog";
+
         }
 
         protected override void OnStart(string[] args)
         {
+            eventLog1.WriteEntry("In OnStart");
+
+            fileSystemWatcher1.Path = "C:\test";
         }
 
         protected override void OnStop()
         {
+            eventLog1.WriteEntry("In onStop.");
         }
     }
 }
