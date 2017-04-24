@@ -1,4 +1,4 @@
-﻿namespace FelohWatchDog
+﻿namespace FelohWatchDogService
 {
     partial class ProjectInstaller
     {
@@ -39,7 +39,7 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = "FelohWatchDog";
+            this.serviceInstaller1.ServiceName = "Service1";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller

@@ -8,34 +8,35 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FelohWatchDog
+namespace FelohWatchDogService
 {
-    public partial class FelohWatchDog : ServiceBase
+    public partial class Service1 : ServiceBase
     {
-        public FelohWatchDog()
+        public Service1()
         {
             InitializeComponent();
-            
-            if (!System.Diagnostics.EventLog.SourceExists("FelohWatchDogService"))
+            if (!System.Diagnostics.EventLog.SourceExists("WatchDogSource"))
             {
                 System.Diagnostics.EventLog.CreateEventSource(
-                    "FelohWatchDogService", "FelohWatchDogOutputLog");
+                    "WatchDogSource", "WatchDogLog");
             }
-            eventLog1.Source = "FelohWatchDogService";
-            eventLog1.Log = "FelohWatchDogOutputLog";
-
+            eventLog1.Source = "WatchDogSource";
+            eventLog1.Log = "WatchDogLog";
         }
 
         protected override void OnStart(string[] args)
         {
             eventLog1.WriteEntry("In OnStart");
-
-            fileSystemWatcher1.Path = "C:\test";
         }
 
         protected override void OnStop()
         {
             eventLog1.WriteEntry("In onStop.");
+        }
+
+        protected override void OnContinue()
+        {
+            //eventLog1.WriteEntry("In OnContinue.");
         }
     }
 }

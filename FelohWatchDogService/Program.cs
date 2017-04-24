@@ -5,7 +5,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FelohWatchDog
+namespace FelohWatchDogService
 {
     static class Program
     {
@@ -17,7 +17,7 @@ namespace FelohWatchDog
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new FelohWatchDog()
+                new Service1()
             };
             ServiceBase.Run(ServicesToRun);
         }
