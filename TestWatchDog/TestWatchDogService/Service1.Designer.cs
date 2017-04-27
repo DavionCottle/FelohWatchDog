@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            eventLog1 = new System.Diagnostics.EventLog();
+            this.eventLog1 = new System.Diagnostics.EventLog();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(eventLog1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             // 
             // fileSystemWatcher1
@@ -40,16 +40,19 @@
             // TestWatchDogService
             // 
             this.ServiceName = "TestWatchDogService";
-            ((System.ComponentModel.ISupportInitialize)(eventLog1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
 
+            checkforfilesTimer = new System.Timers.Timer(10000);
+            checkforfilesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkFiles);
+            checkforfilesTimer.Enabled = true;
         }
 
 
 
 
         #endregion
-
+        private static System.Timers.Timer checkforfilesTimer;
         private System.Diagnostics.EventLog eventLog1;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
     }

@@ -21,12 +21,12 @@ namespace TestWatchDogService
         string WatchPath2 = ConfigurationManager.AppSettings["WatchPath2"];
 
         private static DateTime lastfilefound = DateTime.Now;
-        private static System.Timers.Timer checkFileTimer;
+        
         public TestWatchDogService()
         {
             InitializeComponent();
 
-            checkFileTimer = new System.Timers.Timer(30000);
+            
 
             if (!System.Diagnostics.EventLog.SourceExists("TestSource"))
             {
@@ -42,24 +42,43 @@ namespace TestWatchDogService
             fileSystemWatcher1.Deleted += fileSystemWatcher1_Changed;
             fileSystemWatcher1.Renamed += fileSystemWatcher1_Renamed;
 
-            checkFileTimer.Elapsed += new ElapsedEventHandler(checkFiles);
+            
         }
 
         private static void checkFiles(object source, ElapsedEventArgs e)
         {
-            System.IO.File.Create("C:\\test\\checkfiles.txt");
-            if (DateTime.Now - lastfilefound > TimeSpan.FromMinutes(1) )
+            
+            if (DateTime.Now - lastfilefound > TimeSpan.FromMinutes(.5) )
             {
-                System.IO.File.Create("C:\\test\\test.txt");
+                lastfilefound = DateTime.Now;
+                checkforfilesTimer.Stop();
+                FileStream filepath = new FileStream("C:\\test\\checkfilesTimer.txt", FileMode.OpenOrCreate);
+                filepath.Close();
+
+                Process[] procToKill = Process.GetProcessesByName("WINWORD");
+
+                foreach (Process p in procToKill)
+                {
+                    p.Kill();
+                }
+
+                Process.Start(@"C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE");
+                checkforfilesTimer.Start();
             }
+        }
+
+        public void startmethod ()
+        {
+            eventLog1.WriteEntry("Watch Dog test start 4/26 #1");
+            fileSystemWatcher1.Path = WatchPath1;
+            System.Diagnostics.Debugger.Launch();
+
         }
         protected override void OnStart(string[] args)
         {
-            eventLog1.WriteEntry("Watch Dog test start 4/25 #1");
             try
             {
-                fileSystemWatcher1.Path = WatchPath1;
-                
+                startmethod();
             }
             catch (Exception ex)
             {

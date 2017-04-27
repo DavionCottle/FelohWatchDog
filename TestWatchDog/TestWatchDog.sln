@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWatchDogService", "Test
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "testWatchDogInstall", "testWatchDogInstall\testWatchDogInstall.vdproj", "{3773BC3A-77D1-4C5B-A2F6-2A0EF2975B9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testWatchDogConsole", "testWatchDogConsole\testWatchDogConsole.csproj", "{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{C8E51758-60FC-4B0C-AD2B-ACD0A42F51AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3773BC3A-77D1-4C5B-A2F6-2A0EF2975B9C}.Debug|Any CPU.ActiveCfg = Debug
 		{3773BC3A-77D1-4C5B-A2F6-2A0EF2975B9C}.Release|Any CPU.ActiveCfg = Release
+		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
