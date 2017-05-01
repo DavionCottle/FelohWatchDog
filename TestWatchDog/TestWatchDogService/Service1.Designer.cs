@@ -1,4 +1,6 @@
-﻿namespace TestWatchDogService
+﻿
+using System.Configuration;
+namespace TestWatchDogService
 {
     partial class TestWatchDogService
     {
@@ -19,6 +21,7 @@
             }
             base.Dispose(disposing);
         }
+
 
         #region Component Designer generated code
 
@@ -42,8 +45,8 @@
             this.ServiceName = "TestWatchDogService";
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-
-            checkforfilesTimer = new System.Timers.Timer(10000);
+          
+            checkforfilesTimer = new System.Timers.Timer(double.Parse(ConfigurationManager.AppSettings["FelohCheckTime"]));
             checkforfilesTimer.Elapsed += new System.Timers.ElapsedEventHandler(checkFiles);
             checkforfilesTimer.Enabled = true;
         }

@@ -17,10 +17,10 @@ namespace TestWatchDogService
 {
     public partial class TestWatchDogService : ServiceBase
     {
-        string WatchPath1 = ConfigurationManager.AppSettings["WatchPath1"];
+        public static string watchpath = ConfigurationManager.AppSettings["WatchPath1"];
         string WatchPath2 = ConfigurationManager.AppSettings["WatchPath2"];
 
-        private static DateTime lastfilefound = DateTime.Now;
+        public static DateTime lastfilefound = DateTime.Now;
         
         public TestWatchDogService()
         {
@@ -47,22 +47,24 @@ namespace TestWatchDogService
 
         private static void checkFiles(object source, ElapsedEventArgs e)
         {
+           
+            DateTime fileread = DateTime.Parse(File.ReadAllText(ConfigurationManager.AppSettings["InOutReadFile"]));
             
-            if (DateTime.Now - lastfilefound > TimeSpan.FromMinutes(.5) )
+            if (DateTime.Now - fileread > TimeSpan.FromMinutes(Double.Parse( ConfigurationManager.AppSettings["FelohDownTime"])))
             {
                 lastfilefound = DateTime.Now;
                 checkforfilesTimer.Stop();
-                FileStream filepath = new FileStream("C:\\test\\checkfilesTimer.txt", FileMode.OpenOrCreate);
+                FileStream filepath = new FileStream(ConfigurationManager.AppSettings["InOutReadFile"], FileMode.OpenOrCreate);
                 filepath.Close();
 
-                Process[] procToKill = Process.GetProcessesByName("WINWORD");
+                Process[] procToKill = Process.GetProcessesByName(ConfigurationManager.AppSettings["Felohproc"]);
 
                 foreach (Process p in procToKill)
                 {
                     p.Kill();
                 }
 
-                Process.Start(@"C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE");
+                Process.Start(ConfigurationManager.AppSettings["Felohexe"]);
                 checkforfilesTimer.Start();
             }
         }
@@ -70,7 +72,13 @@ namespace TestWatchDogService
         public void startmethod ()
         {
             eventLog1.WriteEntry("Watch Dog test start 4/26 #1");
-            fileSystemWatcher1.Path = WatchPath1;
+
+            using (System.IO.StreamWriter filepath = new StreamWriter(ConfigurationManager.AppSettings["InOutReadFile"]))
+            {
+                filepath.WriteLine(lastfilefound.ToString());
+            }
+
+            fileSystemWatcher1.Path = watchpath;
             System.Diagnostics.Debugger.Launch();
 
         }
@@ -103,6 +111,10 @@ namespace TestWatchDogService
             {
                 eventLog1.WriteEntry("File system has changed");
                 lastfilefound = DateTime.Now;
+                using (System.IO.StreamWriter filepath = new StreamWriter(ConfigurationManager.AppSettings["InOutReadFile"]))
+                {
+                    filepath.WriteLine(lastfilefound.ToString());
+                }
             }
             catch (Exception ex)
             {

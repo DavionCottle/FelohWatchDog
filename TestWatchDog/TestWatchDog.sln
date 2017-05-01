@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "testWatchDogInstall", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testWatchDogConsole", "testWatchDogConsole\testWatchDogConsole.csproj", "{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationDemo", "SimulationDemo\SimulationDemo.csproj", "{33B10459-2C7E-4E3A-B9A6-47AFBAC47722}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{448D1F5B-E419-4CA7-88B2-4739C2F2E4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B10459-2C7E-4E3A-B9A6-47AFBAC47722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B10459-2C7E-4E3A-B9A6-47AFBAC47722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B10459-2C7E-4E3A-B9A6-47AFBAC47722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B10459-2C7E-4E3A-B9A6-47AFBAC47722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
